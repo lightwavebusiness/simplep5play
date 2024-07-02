@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Super Techs</title>
+</head>
+<body>
+    <script src='https://superthinkers.co.uk/files/supertechs/js/p5.js'></script>
+    <script src='https://superthinkers.co.uk/files/supertechs/js/p5.play.js'></script>
+
+    <script>
+        var runner;
+
+        function setup() {
+            createCanvas(840, 390);
+            runner = createSprite(50, 100, 25, 40);
+        }
+
+        function draw() {
+            background(200);
+            drawSprites();
+        }
+    </script>
+</body>
+</html>

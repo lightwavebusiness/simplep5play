@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Super Techs</title>
+</head>
+<body>
+  <script src='https://superthinkers.co.uk/files/supertechs/js/p5.js'></script>
+  <script src='https://superthinkers.co.uk/files/supertechs/js/p5.play.js'></script>
+
+  <script>
+    var runner;
+    var runningAnimation, jumpingAnimation;
+    var gravity = 1;
+    var jumpPower = 15;
+
+    function preload() {
+      runningAnimation = loadAnimation(
+        'https://superthinkers.co.uk/files/supertechs/sprites/purpleNinja/run00.png', 
+        'https://superthinkers.co.uk/files/supertechs/sprites/purpleNinja/run01.png', 
+        'https://superthinkers.co.uk/files/supertechs/sprites/purpleNinja/run02.png', 
+        'https://superthinkers.co.uk/files/supertechs/sprites/purpleNinja/run03.png', 
+        'https://superthinkers.co.uk/files/supertechs/sprites/purpleNinja/run04.png', 
+        'https://superthinkers.co.uk/files/supertechs/sprites/purpleNinja/run05.png', 
+        'https://superthinkers.co.uk/files/supertechs/sprites/purpleNinja/run06.png', 
+        'https://superthinkers.co.uk/files/supertechs/sprites/purpleNinja/run07.png', 
+        'https://superthinkers.co.uk/files/supertechs/sprites/purpleNinja/run08.png',     
+        'https://superthinkers.co.uk/files/supertechs/sprites/purpleNinja/run09.png'
+      );
+      
+      jumpingAnimation = loadAnimation(
+        'https://superthinkers.co.uk/files/supertechs/sprites/purpleNinja/jump00.png', 
+        'https://superthinkers.co.uk/files/supertechs/sprites/purpleNinja/jump01.png', 
+        'https://superthinkers.co.uk/files/supertechs/sprites/purpleNinja/jump02.png', 
+        'https://superthinkers.co.uk/files/supertechs/sprites/purpleNinja/jump03.png', 
+        'https://superthinkers.co.uk/files/supertechs/sprites/purpleNinja/jump04.png', 
+        'https://superthinkers.co.uk/files/supertechs/sprites/purpleNinja/jump05.png', 
+        'https://superthinkers.co.uk/files/supertechs/sprites/purpleNinja/jump06.png', 
+        'https://superthinkers.co.uk/files/supertechs/sprites/purpleNinja/jump07.png', 
+        'https://superthinkers.co.uk/files/supertechs/sprites/purpleNinja/jump08.png',     
+        'https://superthinkers.co.uk/files/supertechs/sprites/purpleNinja/jump09.png'
+      );
+    }
+
+    function setup() {
+      createCanvas(840, 390);
+      runner = createSprite(50, 100, 25, 40);
+      runner.addAnimation('run', runningAnimation);
+      runner.addAnimation('jump', jumpingAnimation);
+    }
+
+    function draw() {
+      background(200);
+      runner.velocity.y += gravity;
+
+      if (keyWentDown(UP_ARROW)) {
+        runner.changeAnimation("jump");
+        runner.animation.rewind();
+        runner.velocity.y = -jumpPower;
+      }
+
+      runner.collide(createSprite(420, 390, 840, 10)); // Ground platform
+      
+      drawSprites();
+    }
+  </script>
+</body>
+</html>
